@@ -9,7 +9,12 @@ import '../styles/DeskDirectWidget.css';
 
 // ⚠️ CRITICAL FOR PC-2: This MUST be the IP address of PC-1!
 // Do NOT use 'localhost' here if testing across two different computers.
-const socket = io('https://unseraphic-jadiel-nonprescribed.ngrok-free.dev '); 
+// Change your socket connection to look exactly like this:
+const socket = io('https://unseraphic-jadiel-nonprescribed.ngrok-free.dev', {
+  extraHeaders: {
+    "ngrok-skip-browser-warning": "true"
+  }
+});
 
 export function DeskDirectWidget({ currentUser }) {
   const [view, setView] = useState('roster');          
