@@ -13,7 +13,23 @@ export function useDeskDirectAudio(socket, currentUserId) {
   const targetUserIdRef = useRef(null);
 
   const ICE_SERVERS = {
-    iceServers: [{ urls: "stun:stun.l.google.com:19302" },{ urls: "stun:stun1.l.google.com:19302" }],
+   iceServers: [
+        // The STUN servers (for Wi-Fi)
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' },
+        
+        // The TURN server (The magic fix for Mobile Networks/4G/5G)
+        { 
+            urls: 'turn:openrelay.metered.ca:80',
+            username: 'openrelayproject',
+            credential: 'openrelayproject'
+        },
+        { 
+            urls: 'turn:openrelay.metered.ca:443',
+            username: 'openrelayproject',
+            credential: 'openrelayproject'
+        }
+    ],
   };
 
   useEffect(() => {
