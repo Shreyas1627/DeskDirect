@@ -6,7 +6,11 @@ const db = require('./dbServices');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: { origin: "*" }
+    cors: { 
+        origin: "*", 
+        methods: ["GET", "POST"],
+        allowedHeaders: ["ngrok-skip-browser-warning"] // <-- THIS IS THE MAGIC KEY!
+    }
 });
 
 io.on('connection', (socket) => {
