@@ -1,0 +1,223 @@
+/* ── ActiveSession: State 3 ───────────────────────────────────── */
+.active-session {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-card);
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  animation: slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.active-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.active-secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--neon-green);
+  letter-spacing: 0.12em;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+}
+
+.active-user-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.active-desk-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ── Timer ───────────────────────────────────────────────────── */
+.active-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.active-timer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--neon-red);
+  box-shadow: 0 0 8px var(--neon-red);
+  animation: green-pulse 1.2s ease infinite;
+}
+
+.active-timer-display {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+/* ── Waveform Visualizer ─────────────────────────────────────── */
+.active-waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 64px;
+  padding: 0 4px;
+}
+
+.waveform-bar {
+  flex: 1;
+  max-width: 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+}
+
+.waveform-bar::after {
+  content: '';
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-pill);
+  height: var(--bar-height, 40%);
+  background: linear-gradient(
+    to top,
+    rgba(56, 189, 248, 0.3),
+    var(--neon-blue)
+  );
+  box-shadow:
+    0 0 6px var(--neon-blue-glow),
+    0 0 12px rgba(56, 189, 248, 0.1);
+  animation: waveform-pulse 0.9s ease-in-out var(--bar-delay, 0s) infinite;
+}
+
+.active-waveform-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-top: -8px;
+}
+
+/* ── Controls ────────────────────────────────────────────────── */
+.active-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.active-mute-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Mute toggle — circular */
+.active-mute-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.active-mute-btn.unmuted {
+  background: var(--neon-blue-dim);
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  box-shadow: 0 0 16px var(--neon-blue-glow);
+  animation: blue-pulse 2.5s ease infinite;
+}
+
+.active-mute-btn.unmuted:hover {
+  background: rgba(56, 189, 248, 0.18);
+  box-shadow: 0 0 24px var(--neon-blue-glow);
+  transform: scale(1.06);
+}
+
+.active-mute-btn.muted {
+  background: var(--neon-red-dim);
+  border: 2px solid var(--neon-red);
+  color: var(--neon-red);
+  box-shadow: 0 0 16px var(--neon-red-glow);
+}
+
+.active-mute-btn.muted:hover {
+  background: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 24px var(--neon-red-glow);
+  transform: scale(1.06);
+}
+
+.active-mute-btn:active {
+  transform: scale(0.95) !important;
+}
+
+.active-mute-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* END CALL button — wide red rectangle */
+.active-end-call-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px 0;
+  background: var(--neon-red);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow:
+    0 4px 20px var(--neon-red-glow),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.active-end-call-btn:hover {
+  background: #dc2626;
+  box-shadow: 0 6px 28px rgba(239, 68, 68, 0.6);
+  transform: translateY(-1px);
+}
+
+.active-end-call-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px var(--neon-red-glow);
+}
