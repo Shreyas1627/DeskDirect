@@ -11,6 +11,7 @@ import '../styles/DeskDirectWidget.css';
 // Do NOT use 'localhost' here if testing across two different computers.
 // Change your socket connection to look exactly like this:
 const socket = io('https://unseraphic-jadiel-nonprescribed.ngrok-free.dev', {
+  transports: ['websocket'],
   extraHeaders: {
     "ngrok-skip-browser-warning": "true"
   }
