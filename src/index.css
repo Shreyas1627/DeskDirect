@@ -79,3 +79,27 @@ body {
   0%, 100% { transform: scaleY(0.25); opacity: 0.5; }
   50%       { transform: scaleY(1);    opacity: 1; }
 }
+/* --- MOBILE RESPONSIVENESS FOR EXHIBITION --- */
+@media screen and (max-width: 768px) {
+  .dd-widget-root {
+    flex-direction: column;
+    height: 100vh; /* Take up full phone screen */
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  /* Make sure the roster and call screens take full width */
+  .roster-panel, .active-session-panel, .user-profile-panel {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+  }
+
+  /* Adjust buttons for easier thumb-tapping */
+  .call-btn, .end-call-btn, .accept-call-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
