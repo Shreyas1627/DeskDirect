@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
 
     // 2. THE UNIVERSAL WEBRTC ROUTER
     // Automatically forwards ANY call state to the exact right person
+// 2. THE UNIVERSAL WEBRTC ROUTER (With Live Packet Visualizer)
     const signalingEvents = ['offer', 'answer', 'ice-candidate', 'end-call', 'call-rejected'];
     
     signalingEvents.forEach(eventName => {
@@ -36,6 +37,18 @@ io.on('connection', (socket) => {
             const targetSocketId = await db.getSocketIdByUserId(targetId);
             
             if (targetSocketId) {
+                // --- THE EXHIBITION VISUALIZER ---
+                // This will output awesome matrix-style logs in your terminal
+                const timestamp = new Date().toISOString().split('T')[1].slice(0, -1);
+                
+                if (eventName === 'ice-candidate') {
+                    // Simulating network packet inspection
+                    const packetSize = JSON.stringify(data).length * 8; // bits
+                    console.log(`[${timestamp}] 📡 ROUTING PACKET: User ${socket.userId} ➔ User ${targetId} | Payload: ${packetSize} bits | Encrypted P2P`);
+                } else {
+                    console.log(`[${timestamp}] ⚡ SIGNAL [${eventName.toUpperCase()}]: User ${socket.userId} ➔ User ${targetId}`);
+                }
+
                 // Instantly forward the exact event to the target device
                 io.to(targetSocketId).emit(eventName, { ...data, from: socket.userId });
             }
